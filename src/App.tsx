@@ -2,11 +2,13 @@ import "./App.css";
 import { useCounterStore } from "./modal/counterStore";
 
 function App() {
-  const { counter } = useCounterStore();
+  const { counter, decrement, increment } = useCounterStore();
 
   return (
     <div className="wrapper">
+      <button onClick={increment}>+</button>
       <span>{counter}</span>
+      <button onClick={decrement}>-</button>
     </div>
   );
 }

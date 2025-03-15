@@ -4,10 +4,27 @@ type CounterState = {
   counter: number;
 };
 
-const counterSlice: StateCreator<CounterState> = () => ({
+type CounterActions = {
+  increment: () => void;
+  decrement: () => void;
+};
+
+const counterSlice: StateCreator<CounterState & CounterActions> = (
+  set,
+  get
+) => ({
   counter: 0,
-  // начальное состояние стор
-  // выписали описание state в отдельный slice
+  decrement: () => {
+    const { counter } = get();
+    set({ counter: counter - 1 });
+  },
+  increment: () => {
+    const { counter } = get();
+    set({ counter: counter + 1 });
+  },
+  // actions - функции, к-е могут изменять значения, хранящиеся в Store
 });
 
-export const useCounterStore = create<CounterState>(counterSlice);
+export const useCounterStore = create<CounterState & CounterActions>(
+  counterSlice
+);
