@@ -1,16 +1,30 @@
-import { Button, Card, Rate, Tag } from "antd";
+import { Button, Card, Input, Rate, Tag } from "antd";
 import "./App.css";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useCoffeeStore } from "./modal/cofeeStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useCounterStore } from "./modal/counterStore";
 
 function App() {
-  const { getCoffeeList, coffeeList } = useCoffeeStore();
-  useEffect(() => {
-    getCoffeeList();
-  }, []);
+  // const { getCoffeeList, coffeeList } = useCoffeeStore();
+  // const [text, setText] = useState<string | undefined>();
+  // const handleSearch = (text: string) => {
+  //   getCoffeeList({ text });
+  //   setText(text)
+  // };
+  // useEffect(() => {
+  //   getCoffeeList();
+  // }, []);
+  const { counter, decrement, increment, persisedCounter } = useCounterStore();
   return (
     <div className="wrapper">
+      <Button onClick={increment}>+</Button>
+      <span>{counter}</span>
+      <span>{persisedCounter}</span>
+      <Button onClick={decrement}>-</Button>
+      {/* <Input 
+      value={text}
+      placeholder="поиск" onChange={(e) => handleSearch(e.target.value)} />
       <div className="cardsContainer">
         {coffeeList &&
           coffeeList.map((coffee) => (
@@ -33,7 +47,7 @@ function App() {
               />
             </Card>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 }
