@@ -20,7 +20,7 @@ function App() {
   const { setText, text } = useSearchStore();
 
   useEffect(() => {
-    getCoffeeList();
+    getCoffeeList({ text });
   }, []);
 
   return (
